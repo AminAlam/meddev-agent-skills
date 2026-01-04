@@ -1,5 +1,9 @@
 # Medical Device Agent Skills
 
+<p align="center">
+  <img src="assets/meme.jpg" alt="Medical Device Skills Meme" width="400"/>
+</p>
+
 [![Skills](https://img.shields.io/badge/Skills-37-blue)](https://github.com)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![IEC 62304](https://img.shields.io/badge/IEC_62304-Aligned-orange)](regulatory/iec-62304/)
