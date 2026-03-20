@@ -1,7 +1,7 @@
 ---
 skill_id: REG-IEC62304
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.0.2
+last_updated: 2026-03-20
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [FDA, EU MDR, Canada, UK]
 prerequisites: [REG-ISO14971]
@@ -22,16 +22,16 @@ Provide actionable guidance to implement IEC 62304 lifecycle controls across pla
 ## Requirements (testable)
 1. Lifecycle Plan: Maintain a Software Development Plan (SDP) covering activities, roles, class, and tailoring per IEC 62304:2006+A1:2015 5.1; updated when scope or class changes. Rationale: defines required activities by class.
 2. Safety Classification: Assign class (A/B/C) per system hazard analysis (link to ISO 14971); document rationale and impacted software items. Rationale: drives required controls.
-3. Requirements Traceability: Bidirectional traceability from system/software requirements -> design -> code -> tests (unit/integration/system) per 5.2/5.3/5.5. Rationale: completeness and impact analysis.
+3. Requirements Traceability: Bidirectional traceability from system/software requirements -> design -> code -> tests (unit/integration/system) per clauses 5.2–5.7 (requirements analysis through system testing). Rationale: completeness and impact analysis.
 4. Architecture & Design: Maintain software architecture (software items, interfaces, segregation) and detailed design for Class B/C items per 5.3; update when code structure changes. Rationale: enables targeted verification and segregation.
 5. Unit Implementation & Verification: For each software unit, implement per design and verify with unit tests; Class B/C require documented procedures and results per 5.5. Rationale: detect defects early.
 6. Integration Testing: Plan and execute integration tests for interfaces; Class B/C: documented procedures/results, defect tracking per 5.6. Rationale: verify component interactions.
 7. System Testing: Execute system-level tests against software requirements; Class B/C require documented procedures and results per 5.7. Rationale: verify end-to-end behavior.
-8. SOUP Control: Identify all SOUP, record version, provenance, known anomalies, and verification/mitigation per Section 8 (with initial identification per 5.3.3/5.3.4); assess impact on safety and cybersecurity. Rationale: control unknown provenance risk.
-9. Configuration Management: Control items (requirements, design, code, tests, tools, SOUP) with unique identifiers, baselines, and change history per 5.8. Rationale: reproducibility and auditability.
+8. SOUP Control: Identify all SOUP, record version, provenance, known anomalies, and verification/mitigation per architectural design (5.3.3, 5.3.4) and through implementation/verification (5.5–5.7) and maintenance (Section 6) when SOUP changes; assess impact on safety and cybersecurity. Rationale: control unknown provenance risk. (Note: IEC 62304:2006+A1:2015 **Clause 8** is configuration management, not SOUP.)
+9. Configuration Management: Control items (requirements, design, code, tests, tools, SOUP) with unique identifiers, baselines, and change history per **Clause 8** (Software configuration management process). Rationale: reproducibility and auditability.
 10. Problem Resolution: Track problems/defects with status, root cause, class impact, and corrective actions per Section 9. Rationale: closed-loop defect handling.
 11. Maintenance: Establish software maintenance process for modifications, including impact analysis, regression testing, and configuration updates per Section 6. Rationale: continued safety after deployment.
-12. Release Controls: Define release criteria (tests passed, defects triaged, SBOM recorded); Class B/C require documented approval per 5.8. Rationale: safe distribution.
+12. Release Controls: Define release criteria (tests passed, defects triaged, SBOM recorded); Class B/C require documented approval per **5.8** (Software release). Rationale: safe distribution.
 
 ## Recommended Practices
 - Keep a class-specific activity checklist in the repo; gate merges on completion.
@@ -94,11 +94,11 @@ TEST(PumpSafety, StopsWithin50msOnDoorOpen) {
 - [ ] Unit tests implemented for changed units; pass under `-Wall -Wextra -Werror`.
 - [ ] Integration tests updated for interface changes; executed per 5.6.
 - [ ] System tests updated for requirements/behavior changes; executed per 5.7.
-- [ ] SOUP inventory updated (version, anomalies, mitigations, verification) per Section 8.
-- [ ] Configuration items baselined; change records updated per 5.8.
+- [ ] SOUP inventory updated (version, anomalies, mitigations, verification) per 5.3.3/5.3.4 and verification activities 5.5–5.7 as applicable.
+- [ ] Configuration items baselined; change records updated per **Clause 8**.
 - [ ] Defects logged with root cause and resolution; retest evidence present per Section 9.
 - [ ] Maintenance process applied if modifying released software per Section 6.
-- [ ] Release criteria met; approvals recorded; SBOM captured.
+- [ ] Release criteria met; approvals recorded; SBOM captured per **5.8**.
 
 ## Traceability
 - Use stable IDs: requirements (`REQ-62304-###`), hazards (`HZ-###`), risks (`RISK-###`), controls (`RISK-CTRL-###`), tests (`TEST-###`), design elements (`DES-###`).
@@ -106,7 +106,7 @@ TEST(PumpSafety, StopsWithin50msOnDoorOpen) {
 - Generate matrices (REQ↔DES↔CODE↔TEST) automatically where possible; store as artifacts per release.
 
 ## References
-- IEC 62304:2006+A1:2015, clauses 4–9 (especially 5.1–5.8 for development, 6 for maintenance, 7 for risk management, 8 for SOUP, 9 for problem resolution).
+- IEC 62304:2006+A1:2015, clauses 4–9: **5.1–5.8** software development process (5.8 = software release); **6** maintenance; **7** risk management (ISO 14971); **8** software configuration management; **9** problem resolution. SOUP is addressed primarily under **5.3** (architectural design) and related verification clauses—not under Clause 8.
 - IEC TR 80002-1:2019 (application of risk management to software; second edition).
 - FDA Guidance: "Content of Premarket Submissions for Device Software Functions" (2023) for documentation expectations.
 - FDA Guidance: "Cybersecurity in Medical Devices: Quality System Considerations and Content of Premarket Submissions" (2023) for cybersecurity documentation.
@@ -115,15 +115,16 @@ TEST(PumpSafety, StopsWithin50msOnDoorOpen) {
 **Note**: IEC 62304:2024 (Edition 2) may supersede IEC 62304:2006+A1:2015 when published; verify current applicable edition.
 
 ## Changelog
-- 1.0.1 (2026-01-04): Audit corrections - fixed section references (5.9→Section 9 for problem resolution, added 5.7 for system testing, Section 6 for maintenance, Section 8 for SOUP), updated IEC TR 80002-1 to 2019 edition, corrected FDA guidance title to 2023 edition.
+- 1.0.2 (2026-03-20): Corrected Clause 8 vs 5.8 mapping (5.8 = release; Clause 8 = configuration management; SOUP under 5.3+). Clarified traceability span 5.2–5.7.
+- 1.0.1 (2026-01-04): Audit corrections - fixed section references (5.9→Section 9 for problem resolution), added 5.7 for system testing, Section 6 for maintenance; updated IEC TR 80002-1 to 2019 edition; corrected FDA guidance title to 2023 edition. (SOUP/§8 mapping further corrected in 1.0.2.)
 - 1.0.0 (2026-01-04): Initial comprehensive skill covering lifecycle planning, class tailoring, SOUP, traceability, and verification checklists.
 
 ## Audit History
+- **2026-03-20**: Clause mapping audit: distinguished **5.8** (software release) vs **Clause 8** (configuration management); SOUP tied to **5.3** et seq., not Clause 8.
 - **2026-01-04**: Regulatory audit performed. Corrections applied:
   - Section 5.9 referenced for Problem Resolution was incorrect (no such section); corrected to Section 9
   - System testing (5.7) was missing; added as separate requirement
   - Maintenance process (Section 6) was missing; added
-  - SOUP management reference expanded to include Section 8
   - IEC TR 80002-1:2009 updated to 2019 edition
   - FDA guidance title corrected from outdated 2005 guidance to current 2023 guidance
   - Added note about IEC 62304:2024 (Edition 2) pending publication
