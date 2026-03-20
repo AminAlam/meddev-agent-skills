@@ -4,7 +4,7 @@
   <img src="assets/meme.jpg" alt="Medical Device Skills Meme" width="400"/>
 </p>
 
-[![Skills](https://img.shields.io/badge/Skills-37-blue)](https://github.com)
+[![Skills](https://img.shields.io/badge/Skills-53-blue)](https://github.com)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![IEC 62304](https://img.shields.io/badge/IEC_62304-Aligned-orange)](regulatory/iec-62304/)
 
@@ -52,7 +52,12 @@ Modular "skill" files for AI coding agents working on medical device software. E
 | [IEC 62304](regulatory/iec-62304/) | Software lifecycle process controls by class (A/B/C) |
 | [ISO 14971](regulatory/iso-14971/) | Risk management integration, hazard controls, traceability |
 | [FDA Premarket](regulatory/fda-premarket/) | Submission software documentation, SBOM, cybersecurity |
+| [FDA 820 Design Controls](regulatory/fda-820-design-controls/) | 21 CFR 820.30, DHF, verification vs validation, ISO 13485 slice |
 | [EU MDR](regulatory/eu-mdr/) | MDR-specific software expectations and Rule 11 |
+| [IEC 62366 Usability](regulatory/iec-62366-usability/) | Formative/summative evaluation, use-related risk, UI verification |
+| [SaMD Clinical Evaluation](regulatory/samd-clinical-evaluation/) | Intended use, IMDRF category, clinical evidence, CER linkage |
+| [AI/ML Device Software](regulatory/ai-ml-medical-device-software/) | GMLP, data governance, PCCP, drift monitoring, model SOUP |
+| [Postmarket & Labeling](regulatory/postmarket-labeling-ifu/) | Complaints, vigilance, recalls/FSCA, IFU and on-device labeling |
 | [IEC 62443](regulatory/iec-62443/) | Industrial cybersecurity for connected devices |
 | [21 CFR Part 11](regulatory/21-cfr-part-11/) | Electronic records/signatures, audit trails |
 
@@ -114,6 +119,7 @@ Modular "skill" files for AI coding agents working on medical device software. E
 | [Traceability](documentation/traceability/) | Matrices, bidirectional links, tool integration |
 | [Inline Docs](documentation/inline-docs/) | Intentful inline comments, trace tags, API notes |
 | [Change Control](documentation/change-control/) | Change requests, impact, regression, config mgmt |
+| [AI-Assisted Dev Governance](documentation/ai-assisted-development-governance/) | LLM coding policy, review, CSA-style evidence for agent output |
 
 ### Data
 | Skill | Description |

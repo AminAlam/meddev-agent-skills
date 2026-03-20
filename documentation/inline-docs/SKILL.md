@@ -54,10 +54,10 @@ Concurrency note:
 ```
 
 ## Anti-Patterns (risks)
-- Comments that mirror code or go stale → risk: misleads reviewers.
-- Missing range/unit notes on APIs → risk: misuse and safety defects.
-- No traceability tags on safety logic → risk: audit gaps.
-- Inline change logs → risk: divergence from VCS truth.
+- Comments that mirror code or go stale -> risk: misleads reviewers.
+- Missing range/unit notes on APIs -> risk: misuse and safety defects.
+- No traceability tags on safety logic -> risk: audit gaps.
+- Inline change logs -> risk: divergence from VCS truth.
 
 ## Verification Checklist
 - [ ] Comments add intent/constraints/traceability, not restate code.
