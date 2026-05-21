@@ -1,7 +1,7 @@
 ---
 skill_id: TEST-INTEGRATION
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.1.0
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [Global]
 prerequisites: [FW-HAL, ARCH-SEPARATION]
@@ -17,12 +17,16 @@ Validate interactions between software components and hardware interfaces, ensur
 - After refactors affecting boundaries or IPC.
 
 ## Requirements (testable)
-1. Interface Coverage: Test all public interfaces and IPC paths, including error paths. Rationale: verify contracts.
-2. Environment Representativeness: Use representative hardware or high-fidelity simulators; include timing where safety-relevant. Rationale: realism.
-3. Data Validation: Validate size/range/CRC across interfaces; inject malformed data to confirm rejection. Rationale: robustness.
-4. Determinism: Control nondeterminism (clocks, randomness, network) for repeatability where possible. Rationale: reproducibility.
-5. Traceability: Link tests to interface requirements and risks. Rationale: compliance and impact analysis.
-6. Automation: Run in CI (or nightly if hardware-limited); capture logs/artifacts. Rationale: continuous assurance.
+1. Integrate per Plan [Class B, C]: Integrate software units per integration plan. Rationale: 5.6.1.
+2. Integration Verification [Class B, C]: Verify integration matches plan; retain evidence (often inspection). Rationale: 5.6.2.
+3. Integration Testing [Class B, C]: Test integrated items for intended behaviour—functionality, risk controls, timing, interfaces, abnormal/misuse cases. Rationale: 5.6.3–5.6.4.
+4. Procedure Adequacy [Class B, C]: Evaluate integration test procedures for adequacy. Rationale: 5.6.5.
+5. Regression [Class B, C]: After integrating items, run regression tests on previously integrated software. Rationale: 5.6.6.
+6. Test Records [Class B, C]: Record pass/fail, anomalies, data to repeat test, and tester identity. Rationale: 5.6.7.
+7. Problem Process [Class B, C]: Enter integration anomalies into `DOC-PROBLEM-RES`. Rationale: 5.6.8.
+8. Interface Coverage: Test all public interfaces and IPC paths, including error paths. Rationale: verify contracts.
+9. Traceability: Link tests to interface requirements and risks. Rationale: compliance.
+10. Automation: Run in CI or scheduled hardware runs; capture logs/artifacts. Rationale: continuous assurance.
 
 ## Recommended Practices
 - Use contract tests between components; mock only external dependencies, not the components under test.
@@ -63,10 +67,12 @@ CHECK_TRUE(send_cmd(&cmd));
 - `TEST-INT-###` mapped to interface requirements; timing evidence stored with results.
 
 ## References
-- IEC 62304 integration testing (5.6).
-- ISO 14971 for risk-based test scope.
+- IEC 62304:2006+A1:2015, 5.6 (integration and integration testing).
+- `DOC-PROBLEM-RES`, `DOC-TEST-DOCS`.
+- ISO 14971:2019 for risk-based test scope.
 
 ## Changelog
+- 1.1.0 (2026-05-21): Aligned with 5.6.1–5.6.8 including regression and problem process.
 - 1.0.0 (2026-01-04): Initial integration testing skill with interface coverage and robustness focus.
 
 ## Audit History

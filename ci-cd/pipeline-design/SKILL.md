@@ -1,7 +1,7 @@
 ---
 skill_id: CICD-PIPELINE
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.1.0
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [Global]
 prerequisites: [REG-IEC62304, SEC-THREAT-MODELING]
@@ -21,7 +21,8 @@ Define regulated-friendly CI/CD pipelines with compliance checks, artifact manag
 3. Access Control: Restrict pipeline credentials; separate duties for signing and deployment; no shared secrets. Rationale: security.
 4. Artifact Integrity: Sign build artifacts; store immutably with checksums and SBOM. Rationale: integrity and provenance.
 5. Environment Parity: Align CI and release build environments; pin toolchain versions. Rationale: reproducibility.
-6. Audit Trail: Log pipeline runs, approvals, and results; retain for submissions. Rationale: compliance evidence.
+6. Controlled Dev Tools [Class B, C]: Include compilers, assemblers, build scripts, and environment settings that could affect software as configuration items; baseline before verification. Rationale: 5.1.10–5.1.11.
+7. Audit Trail: Log pipeline runs, approvals, and results; retain for submissions. Rationale: compliance evidence.
 
 ## Recommended Practices
 - Use templates for regulated projects with required stages preconfigured.
@@ -65,11 +66,13 @@ tests: [unit.xml, integ.xml]
 - Link pipeline runs to change requests/commits and test reports; store build metadata with release.
 
 ## References
-- IEC 62304 config/verification expectations.
+- IEC 62304:2006+A1:2015, 5.1.10–5.1.11 (development tools under CM).
+- `DOC-SCM`, `REG-IEC62304`.
 - SLSA (Supply-chain Levels for Software Artifacts) as informative.
 - FDA cybersecurity guidance (integrity, SBOM).
 
 ## Changelog
+- 1.1.0 (2026-05-21): Added 5.1.10–5.1.11 controlled development tools in CI.
 - 1.0.0 (2026-01-04): Initial pipeline design skill with stages, integrity, and audit trail.
 
 ## Audit History

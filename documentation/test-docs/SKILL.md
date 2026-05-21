@@ -1,7 +1,7 @@
 ---
 skill_id: DOC-TEST-DOCS
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.1.0
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [Global]
 prerequisites: [TEST-UNIT, TEST-INTEGRATION, DOC-INLINE]
@@ -22,6 +22,8 @@ Define structure and content for test plans, protocols, and reports that support
 3. Reports: Actual results, deviations, defects, and conclusion vs acceptance criteria. Rationale: evidence of execution.
 4. Traceability: Each test case links to requirements/hazards; matrices maintained. Rationale: completeness.
 5. Configuration Control: Environments, tools, and versions recorded; reproducible setups. Rationale: consistency.
+6. System Test Records [Class A, B, C]: For system testing, retain protocol reference, pass/fail with anomaly list, software version tested, hardware/software configuration, test tools, date, and tester identity. Rationale: 5.7.5.
+7. Retest Records [Class A, B, C]: After changes, test documentation includes the same record elements for retest/regression (align with `DOC-PROBLEM-RES`). Rationale: 9.8.
 
 ## Recommended Practices
 - Use IDs for test plans (`TPL-###`), cases (`TC-###`), protocols (`TPR-###`), and reports (`TRP-###`).
@@ -51,6 +53,19 @@ Deviations: None
 Defects: DEF-88 (UI lag) - not safety relevant
 ```
 
+System test record (YAML):
+```yaml
+test_record:
+  protocol: TPR-SYS-210
+  result: pass
+  anomalies: []
+  software_version: 1.3.0
+  configuration: hw_rev_B2, host_test_runner_ubuntu22
+  tools: [hil_runner 2.1, logic_analyzer_fw 0.9]
+  date: 2026-05-20
+  tester: jdoe
+```
+
 ## Anti-Patterns (risks)
 - Missing traceability -> risk: unverifiable coverage.
 - Only positive tests documented -> risk: gaps in error handling evidence.
@@ -63,15 +78,19 @@ Defects: DEF-88 (UI lag) - not safety relevant
 - [ ] Reports capture actual results, deviations, defects, and conclusions.
 - [ ] Environments/tools/configurations recorded.
 - [ ] Traceability matrix maintained requirements↔tests.
+- [ ] System test records include version, configuration, tools, date, tester (5.7.5).
+- [ ] Retest after changes includes full record fields (9.8).
 
 ## Traceability
 - IDs (`TPL-###`, `TC-###`, `TPR-###`, `TRP-###`) linked to `REQ-###` and `HZ-###`; stored with release artifacts.
 
 ## References
-- IEC 62304 verification documentation expectations.
+- IEC 62304:2006+A1:2015, 5.7.5 (system test records), 9.8 (retest documentation).
+- `DOC-PROBLEM-RES`, `TEST-INTEGRATION`, `CICD-RELEASE`.
 - FDA/MDR submission formats for test evidence (device-specific).
 
 ## Changelog
+- 1.1.0 (2026-05-21): Added 5.7.5 and 9.8 mandatory test record fields.
 - 1.0.0 (2026-01-04): Initial test documentation skill with plans, protocols, and reports.
 
 ## Audit History

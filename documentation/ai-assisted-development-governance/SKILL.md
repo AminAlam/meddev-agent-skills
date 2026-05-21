@@ -1,7 +1,7 @@
 ---
 skill_id: DOC-AI-GOV
-version: 1.0.0
-last_updated: 2026-03-20
+version: 1.0.1
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [Global]
 prerequisites: [REG-IEC62304, REG-ISO14971, DOC-TRACEABILITY]
@@ -23,6 +23,7 @@ Define **governance** for **AI/LLM-assisted software development** (e.g., Cursor
 3. Independent Review: For Class B/C changes, **second-person review** of generated patches focusing on **requirements coverage**, **failure modes**, and **misinterpreted specs**. Rationale: defect detection beyond automation.
 4. Test Evidence: **No merge without tests** (or justified analysis) demonstrating **REQ→TEST** linkage for new behavior; forbid “LLM says it works” as evidence. Rationale: verification independence from generator.
 5. Prompt & Context Hygiene: **No PHI/PII/proprietary trial data** in prompts; use **sanitized snippets**; pin **skill/context versions** (e.g., `SKILL.md` hashes) when claims depend on agent guidance. Rationale: confidentiality and reproducibility.
+5a. IEC 62304 Skills by Class: Load `REG-IEC62304` and child skills appropriate to safety class (e.g. `DOC-SW-REQ`, `REG-IEC62304-SWRM` for B/C, detailed design for C); record skill IDs/versions in change records. Rationale: proportional lifecycle guidance.
 6. Tool Validation (GxP): For tools affecting **GMP/quality records**, apply **FDA CSA** approach: risk assessment, **intended use**, **testing records**, and **change control** when models or plugins update. Rationale: 21 CFR Part 11 / 820 alignment for QMS software.
 7. Regression & Flakes: Treat LLM-generated tests like any other code — **deterministic CI**, seed control where needed, flake triage. Rationale: valid CI as design verification aid.
 8. Record Retention: Store **PR descriptions**, **review comments**, and **test reports** as part of DHF/evidence; avoid relying on vendor chat logs as SOLE records. Rationale: durable evidence.
@@ -68,4 +69,5 @@ AI: scaffolded by LLM; reviewed by @jdoe; TEST-412 added
 - Internal QMS SOPs for design control and records (primary authority).
 
 ## Changelog
+- 1.0.1 (2026-05-21): Require class-appropriate IEC 62304 child skills and version pinning in change records.
 - 1.0.0 (2026-03-20): Initial skill for LLM-assisted dev governance, review, and CSA alignment.

@@ -1,7 +1,7 @@
 ---
 skill_id: REG-ISO14971
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.1.0
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [FDA, EU MDR, Canada, UK]
 prerequisites: []
@@ -10,7 +10,7 @@ prerequisites: []
 # ISO 14971 Risk Management for Software
 
 ## Purpose
-Integrate ISO 14971:2019 risk management into software development: hazard identification, risk evaluation, control implementation in code, verification of effectiveness, and documentation of residual risk.
+Integrate ISO 14971:2019 device risk management into software development: hazard identification, risk evaluation, control implementation, verification, and residual risk documentation. For IEC 62304 Clause 7 software-specific risk activities, also load `REG-IEC62304-SWRM`.
 
 ## When to Apply
 - Any change affecting hazards, controls, or mitigations.
@@ -96,12 +96,14 @@ TEST: TEST-410 added, TEST-411 updated
 
 ## References
 - ISO 14971:2019, clauses 4–10 (risk management process).
+- `REG-IEC62304-SWRM` (IEC 62304:2006+A1:2015, Clause 7 — software risk process).
 - IEC TR 80002-1:2019 (guidance on applying ISO 14971 to software; second edition).
 - FDA Guidance: "Content of Premarket Submissions for Device Software Functions" (2023) for submission expectations.
 - FDA Guidance: "Cybersecurity in Medical Devices" (2023) for security risk management alignment.
 - MDCG 2019-16 (guidance on cybersecurity for medical devices; EU MDR context).
 
 ## Changelog
+- 1.1.0 (2026-05-21): Clarified scope vs `REG-IEC62304-SWRM` (Clause 7).
 - 1.0.1 (2026-01-04): Audit corrections - updated IEC TR 80002-1 to 2019 edition, clarified FDA guidance references.
 - 1.0.0 (2026-01-04): Initial skill with hazard/control patterns, safe state guidance, commit traceability, and verification checklist.
 

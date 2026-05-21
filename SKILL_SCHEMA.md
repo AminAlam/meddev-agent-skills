@@ -49,3 +49,13 @@ Versioned history of updates (date, author, summary).
 - Provide complete code snippets that compile cleanly (assume `-Wall -Wextra -Werror` or equivalent).
 - Ensure every requirement has a verification path (test, checklist, static/dynamic analysis).
 - Use ASCII unless domain content requires otherwise.
+
+## Standards citation and copyright
+Skills paraphrase normative standards; they do not reproduce copyrighted standard text.
+
+- **Cite by location only:** clause or subclause numbers (e.g. `IEC 62304:2006+A1:2015, 5.7.5`). Do not paste requirement wording from standards.
+- **Paraphrase obligations:** express each requirement as a testable agent action in original language without mirroring standard phrasing.
+- **Label non-normative content:** use `(interpretation)`, `(informative — Annex A/B)`, or `(implementation guidance for agents)` where applicable.
+- **No annex copy:** do not reproduce informative annex tables or guidance text; describe concepts in plain engineering terms and point readers to their licensed standard copy.
+- **Defined terms:** prefer everyday terms in skill body; optional parenthetical standard term once (e.g. third-party library (SOUP)), not full Clause 3 definitions.
+- **Review:** PRs that cite IEC, ISO, FDA, or EU texts must be checked for verbatim reuse; a regulatory reviewer confirms clause mapping without text duplication.

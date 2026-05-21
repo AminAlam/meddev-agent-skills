@@ -1,7 +1,7 @@
 ---
 skill_id: TEST-UNIT
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.1.0
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [Global]
 prerequisites: [FW-EMBEDDED-C, FW-HAL, ARCH-SAFETY-CLASS]
@@ -17,12 +17,15 @@ Establish patterns for unit tests that verify software units against requirement
 - Bug fixes to prevent regression.
 
 ## Requirements (testable)
-1. Structure: Use Arrange-Act-Assert pattern; deterministic tests with clear preconditions. Rationale: readability and reliability.
-2. Coverage by Class: Class A: statement/branch; Class B/C: branch plus MC/DC where feasible for control logic. Rationale: risk-proportional assurance.
-3. Isolation: Use mocks/stubs for hardware/HAL; no real hardware in unit tests. Rationale: determinism.
-4. Traceability: Each test links to requirement ID(s) and risk controls where relevant. Rationale: compliance and impact analysis.
-5. Negative Cases: Include invalid inputs, boundary conditions, and fault paths. Rationale: robustness.
-6. CI Integration: Tests run in CI; failures block merges; results archived. Rationale: continuous assurance.
+1. Implement Units [Class A, B, C]: Implement each software unit per design. Rationale: 5.5.1.
+2. Verification Process [Class B, C]: Define strategies, methods, and procedures for unit verification; evaluate test procedure adequacy. Rationale: 5.5.2.
+3. Acceptance Criteria [Class B, C]: Define acceptance criteria before integration; confirm units meet criteria (requirements, interface consistency, coding standards). Rationale: 5.5.3.
+4. Class C Criteria [Class C]: Where design requires, add criteria for event sequencing, data/control flow, resource use, fault handling, initialization, diagnostics, memory behaviour, and boundary conditions. Rationale: 5.5.4 (engineering checklist).
+5. Execute and Record [Class B, C]: Perform unit verification and document results. Rationale: 5.5.5.
+6. Structure: Use Arrange-Act-Assert; deterministic tests with clear preconditions. Rationale: reliable evidence.
+7. Isolation: Mock hardware/HAL; no real hardware in unit tests. Rationale: determinism.
+8. Traceability: Each test links to requirement and risk control IDs. Rationale: compliance.
+9. CI Integration: Run in CI; archive results. Rationale: continuous assurance.
 
 ## Recommended Practices
 - Keep tests fast (<1s each) to encourage frequent runs.
@@ -72,10 +75,12 @@ MOCK_FUNCTION_WITH_RETURN(hal_status_t, hal_uart_write, const uint8_t*, size_t, 
 - Map `TEST-UNIT-###` to `REQ-###`; store coverage reports per release.
 
 ## References
-- IEC 62304 unit implementation/verification (5.5).
-- ISO 14971 for risk-based test depth.
+- IEC 62304:2006+A1:2015, 5.5 (software unit implementation and verification).
+- `TEST-COVERAGE` (informative MC/DC depth by class).
+- ISO 14971:2019 for risk-based test depth.
 
 ## Changelog
+- 1.1.0 (2026-05-21): Aligned with 5.5.2–5.5.5 and Class C acceptance topics.
 - 1.0.0 (2026-01-04): Initial unit testing skill with coverage targets and traceability.
 
 ## Audit History

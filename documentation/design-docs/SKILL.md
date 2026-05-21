@@ -1,7 +1,7 @@
 ---
 skill_id: DOC-DESIGN-DOCS
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.1.0
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [Global]
 prerequisites: [REG-IEC62304, REG-ISO14971, DOC-INLINE]
@@ -17,12 +17,14 @@ Guide creation and maintenance of Software Architecture (SAD) and Design Descrip
 - Prior to safety classification decisions and verification planning.
 
 ## Requirements (testable)
-1. Architecture Views: Document components, interfaces, data flows, and deployment; include safety segregation and trust boundaries. Rationale: clarity and verification.
-2. Design Detail: For Class B/C items, provide module-level design (algorithms, state machines, timing constraints, error handling). Rationale: supports verification and hazard control.
-3. Traceability: Link design elements to requirements, hazards, and tests; maintain IDs consistently. Rationale: compliance.
-4. SOUP Documentation: Identify SOUP, versions, roles, known issues, and mitigations. Rationale: provenance and risk control.
-5. Interfaces: Specify contracts (types, ranges, timing, errors); align with implementation. Rationale: interoperability and safety.
-6. Updates: Keep design docs current with code; change control applied. Rationale: prevent drift.
+1. Architecture from Requirements [Class B, C]: Document structure and software items that implement software requirements; verify architecture implements requirements including risk controls. Rationale: 5.3.1, 5.3.6 a.
+2. Interface Architecture [Class B, C]: Document interfaces between items and between items and external hardware/software. Rationale: 5.3.2, 5.3.6 b.
+3. SOUP Specifications [Class B, C]: For each SOUP item, document functional/performance needs for intended use and required system hardware/software to run it. Rationale: 5.3.3–5.3.4, 5.3.6 c.
+4. Risk-Control Segregation [Class C]: Identify segregation between items required for risk control and how effectiveness is ensured. Rationale: 5.3.5.
+5. Unit Decomposition [Class B, C]: Subdivide software to software units per architecture. Rationale: 5.4.1.
+6. Detailed Design [Class C]: Document unit and interface design sufficient for correct implementation; verify against architecture without contradiction. Rationale: 5.4.2–5.4.4.
+7. Traceability: Link design elements to requirements, hazards, and tests. Rationale: 5.3.6, 7.3.3.
+8. Updates: Keep design docs current with code under change/configuration control. Rationale: prevent drift.
 
 ## Recommended Practices
 - Use lightweight but structured docs; diagrams with textual descriptions.
@@ -60,23 +62,25 @@ known_issues:
 - No mapping to requirements/hazards -> risk: traceability failure.
 
 ## Verification Checklist
-- [ ] Architecture views include safety segregation and trust boundaries.
-- [ ] Module designs documented for Class B/C, including state/timing/error handling.
+- [ ] Class B/C: architecture implements requirements and supports interfaces (5.3.6).
+- [ ] Class B/C: SOUP functional and platform needs documented.
+- [ ] Class C: segregation for risk control documented (5.3.5).
+- [ ] Class C: detailed unit/interface design and verification against architecture (5.4).
 - [ ] Design elements linked to requirements/hazards/tests.
-- [ ] SOUP documented with mitigations and verification.
-- [ ] Interface contracts specified (types/ranges/timing/errors).
-- [ ] Docs updated with changes; under change control.
+- [ ] Docs updated with changes; under `DOC-SCM` / change control.
 
 ## Traceability
 - Use IDs for design elements (`DES-###`) linked to `REQ-###`, `HZ-###`, `TEST-###`.
 - Keep diagrams and text under version control; include in baselines/releases.
 
 ## References
-- IEC 62304 (architecture/design documentation).
-- ISO 14971 (hazard linkage).
+- IEC 62304:2006+A1:2015, 5.3–5.4 (architectural and detailed design).
+- ISO 14971:2019 (hazard linkage).
+- `DOC-SW-REQ`, `ARCH-SAFETY-CLASS`, `REG-IEC62304-SWRM`.
 - FDA/MDR tech file expectations (architecture, SOUP).
 
 ## Changelog
+- 1.1.0 (2026-05-21): Split 5.3 architecture vs 5.4 detailed design; SOUP and Class C segregation aligned to IEC 62304.
 - 1.0.0 (2026-01-04): Initial design documentation skill with architecture views, SOUP, and traceability.
 
 ## Audit History

@@ -1,7 +1,7 @@
 ---
 skill_id: REG-POSTMKT-LABEL
-version: 1.0.0
-last_updated: 2026-03-20
+version: 1.0.1
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [FDA, EU MDR]
 prerequisites: [REG-IEC62304, REG-ISO14971]
@@ -20,7 +20,7 @@ Connect **post-market** processes to software: **complaints**, **vigilance / MDR
 - Post-market **cybersecurity** vulnerability handling tied to deployed versions.
 
 ## Requirements (testable)
-1. Complaint Intake: Record **software version**, **hardware rev**, **environment**, and **symptom** for each complaint; link to risk file and known anomalies. Rationale: investigation and trend analysis.
+1. Complaint Intake: Record **software version**, **hardware rev**, **environment**, and **symptom** for each complaint; link to risk file and known anomalies; route into software maintenance feedback (IEC 62304 6.2.1). Rationale: investigation and trend analysis.
 2. Investigation: Perform **root cause** analysis distinguishing **software defect**, **use error**, **SOUP/CVE**, and **environmental** factors; preserve records per QMS. Rationale: CAPA effectiveness.
 3. Vigilance / Reporting: Apply **EU MDR** vigilance rules and **FDA MDR** reporting for device malfunctions; escalate per timelines when criteria met. Rationale: legal reporting.
 4. Field Actions: For **FSCA** / recall, define **affected versions**, **corrective action** (patch, config, instructions), **customer communication**, and **effectiveness checks**. Rationale: patient safety.
@@ -71,6 +71,7 @@ IFU change note:
 - IDs: `CMP-*`, `FSCA-*`, `LBL-*`, `IFU-*`; link to `v*.*.*`, `BUG-*`, `HZ-*`.
 
 ## References
+- IEC 62304:2006+A1:2015, 6.2 (feedback, problem reports, change communication); `DOC-SW-MAINT`, `DOC-PROBLEM-RES`.
 - EU MDR 2017/745 — vigilance (Articles 87–92), PMS (Articles 83–86).
 - FDA 21 CFR Part 803 (medical device reporting) — where applicable.
 - FDA 21 CFR Part 806 (reports of corrections/removals).
@@ -78,4 +79,5 @@ IFU change note:
 - FDA “Cybersecurity in Medical Devices” — postmarket expectations (current guidance).
 
 ## Changelog
+- 1.0.1 (2026-05-21): Linked complaint intake to IEC 62304 maintenance process (6.2).
 - 1.0.0 (2026-03-20): Initial skill for complaints, vigilance, recalls, labeling/IFU, cybersecurity PMS.
