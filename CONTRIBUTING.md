@@ -41,6 +41,15 @@ Thanks for helping improve medical-device-agent-skills. Contributions must maint
 - Use consistent headings per `SKILL_SCHEMA.md`.
 - Code blocks should be minimal yet complete; include comments for medical-device context and traceability tags (e.g., `REQ-123`, `RISK-45`, `TEST-78`).
 
+## Standards citation and copyright
+International and national standards (IEC, ISO, EN, FDA, EU) are copyrighted. This repository distributes **original paraphrased guidance**, not standard text.
+
+- Cite standards by **edition and clause number only**; never paste normative sentences, defined-term definitions, or annex tables.
+- Paraphrase each obligation as a testable requirement; avoid phrasing that tracks the standard word-for-word.
+- Mark `(interpretation)` where the skill goes beyond or simplifies normative text.
+- PR reviewers: spot-check diffs for long phrases that may match a licensed standard PDF; reject verbatim reuse.
+- Contributors need their own licensed copy of cited standards for authoritative review; skills are not a substitute.
+
 ## Reporting issues or suggesting improvements
 - Open an issue with: context, affected skill(s), expected vs observed guidance, and proposed fix.
 - For urgent compliance gaps, label as `compliance-critical`.

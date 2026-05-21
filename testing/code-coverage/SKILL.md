@@ -1,7 +1,7 @@
 ---
 skill_id: TEST-COVERAGE
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.1.0
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [Global]
 prerequisites: [TEST-UNIT, TEST-INTEGRATION]
@@ -17,7 +17,7 @@ Measure and enforce coverage appropriate to safety class: statement/branch and M
 - After significant code changes affecting control logic.
 
 ## Requirements (testable)
-1. Metrics: Collect statement and branch coverage; for Class C control logic, MC/DC where feasible. Rationale: evidence of test thoroughness.
+1. Metrics: Collect statement and branch coverage; for Class C control logic, pursue MC/DC where feasible (informative practice; not a separate normative requirement in IEC 62304:2006). Rationale: evidence of test thoroughness.
 2. Targets by Class: Define minimums (e.g., Class A: stmt≥80%, branch≥70; Class B: stmt≥90%, branch≥80; Class C: stmt≥95%, branch≥90, MC/DC for safety logic). Rationale: risk-based rigor.
 3. Exclusions: Document and justify any excluded code (e.g., defensive assertions, unreachable hardware stubs); peer review exclusions. Rationale: transparency.
 4. Tooling: Use consistent coverage tools; ensure build flags don’t alter behavior materially; keep artifacts. Rationale: reproducibility.
@@ -59,10 +59,13 @@ approved_by: safety_reviewer
 - `REQ-COV-###` linked to coverage policy and reports per release; map safety-critical modules to MC/DC efforts.
 
 ## References
-- DO-178C MC/DC concepts (informative); IEC 62304 verification rigor guidance.
+- IEC 62304:2006+A1:2015, 5.5 (unit verification); Annex A Table A.1 (informative class tailoring).
+- DO-178C MC/DC concepts (informative; not required by IEC 62304:2006).
+- `TEST-UNIT`.
 - Tool docs (gcov/lcov, llvm-cov, commercial MC/DC tools).
 
 ## Changelog
+- 1.1.0 (2026-05-21): Clarified MC/DC as informative; linked 5.5 and class tailoring.
 - 1.0.0 (2026-01-04): Initial coverage skill with class-based thresholds and exclusion governance.
 
 ## Audit History

@@ -1,0 +1,27 @@
+# Example traceability records — illustrative only, not for production use
+
+problem_report:
+  id: PR-2026-088
+  software_version: "1.2.3"
+  criticality: safety
+  summary: Door-open stop exceeds 50 ms intermittently
+  linked_hazard: HZ-07
+  change_request: CR-201
+
+change_request:
+  id: CR-201
+  problem_reports: [PR-2026-088]
+  affects: [REQ-62304-102, RISK-CTRL-19]
+  verification:
+    tests: [TEST-410, TEST-415]
+    result: pass
+
+test_record:
+  protocol: TPR-UNIT-415
+  software_version: "1.2.4-rc1"
+  result: pass
+  anomalies: []
+  configuration: host_ci_ubuntu22_gcc12
+  tools: [unity_test_runner]
+  date: "2026-05-21"
+  tester: jdoe

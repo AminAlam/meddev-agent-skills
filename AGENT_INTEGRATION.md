@@ -9,7 +9,7 @@ How to integrate `medical-device-agent-skills` into AI coding agents while respe
 
 ## Selection algorithms
 - Rules-based: match safety class, jurisdiction, and file types to `When to Apply`.
-- Keyword/regex: detect domain cues (e.g., “SOUP”, “bootloader”, “BLE”) in diffs or files.
+- Keyword/regex: detect domain cues (e.g., "SOUP", "bootloader", "BLE") in diffs or files.
 - Embedding similarity: embed diffs/plan text vs skill content; rerank by `applies_to`/`jurisdiction`.
 - LLM classification: ask a router model to choose top-N skills given task + metadata.
 - Hybrid: rules filter -> similarity -> LLM tie-break; enforce prerequisite closure.
@@ -19,6 +19,29 @@ How to integrate `medical-device-agent-skills` into AI coding agents while respe
 - Summarize: compress long sections; keep code examples intact where needed.
 - Chain skills: load prerequisites first; deduplicate overlapping guidance.
 - Scope by change set: map diffs to affected domains (e.g., RTOS, BLE, boot) and select matching skills.
+
+## IEC 62304 recommended load order
+
+For regulated medical device software work, resolve prerequisites in this order (interpretation):
+
+```
+REG-ISO14971
+  └── REG-IEC62304                    # lifecycle hub
+        ├── ARCH-SAFETY-CLASS         # 4.3 classification
+        ├── REG-IEC62304-SWRM         # Clause 7 (Class B/C focus)
+        ├── REG-IEC62304-LEGACY       # 4.4 when applicable only
+        ├── DOC-SW-REQ                # 5.2
+        ├── DOC-DESIGN-DOCS           # 5.3–5.4
+        ├── DOC-SCM                   # Clause 8
+        ├── DOC-CHANGE-CONTROL        # 8.2 / change requests
+        ├── DOC-PROBLEM-RES           # Clause 9
+        ├── DOC-SW-MAINT              # Clause 6 (post-release)
+        ├── DOC-TEST-DOCS             # 5.7.5, 9.8
+        └── DOC-TRACEABILITY
+              └── implementation skills (TEST-*, FW-*, CICD-*, SEC-*)
+```
+
+Filter by `applies_to`: Class A work may omit Class C-only skills (detailed design 5.4, 5.3.5 segregation) unless items are unclassified (default Class C per 4.3 g).
 
 ## Prompt integration patterns
 - System prompt injection: prepend selected skill snippets (requirements + verification) to system/developer prompts.
@@ -60,7 +83,9 @@ if "wifi" in file_path:
 - Pin versions (`skill_id@version`) in pipelines; alert on updates.
 - Keep audit logs of skills injected per change (for traceability).
 - Enforce jurisdiction/safety filters to avoid over/under-scoping guidance.
+- Do not paste copyrighted standard text into prompts; use skills as paraphrased guidance with clause references.
 
 ## Notes
-- Skills supplement—not replace—formal regulatory review.
+- Skills supplement—not replace—formal regulatory review and licensed standard documents.
 - When context is tight, favor Requirements + Verification + targeted Patterns.
+- For AI-assisted development, see `DOC-AI-GOV` for skill version pinning and class-appropriate 62304 loading.

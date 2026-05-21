@@ -1,7 +1,7 @@
 ---
 skill_id: CICD-RELEASE
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.1.0
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [FDA, EU MDR, Global]
 prerequisites: [REG-IEC62304, REG-ISO14971, SEC-SECURE-OTA]
@@ -16,12 +16,17 @@ Define controlled release process for medical device software: versioning, branc
 - Preparing any software release or field update.
 
 ## Requirements (testable)
-1. Versioning: Use semantic and/or regulated versioning; tie to configuration baselines; record in release notes. Rationale: traceability.
-2. Branch Strategy: Maintain protected release branches; gate merges with tests/approvals; tag releases. Rationale: control and reproducibility.
-3. Verification: Ensure required tests (unit/integration/HIL), coverage, SAST/DAST, and security scans pass for the release build. Rationale: assurance.
-4. Approvals: Obtain required QA/RA and security approvals; document sign-offs. Rationale: governance.
-5. Artifacts: Store signed binaries, SBOM, test reports, coverage, and trace matrices; include checksums. Rationale: auditability and integrity.
-6. Post-Release: Monitor field metrics, incidents, and vulnerabilities; feed into PMS/risk files; patch policy defined. Rationale: lifecycle safety.
+1. Verification Complete [Class A, B, C]: Ensure all software verification activities for the release are complete and results evaluated before release. Rationale: 5.8.1.
+2. Residual Anomalies [Class A, B, C]: Document all known residual anomalies. Rationale: 5.8.2.
+3. Anomaly Risk Evaluation [Class B, C]: Evaluate residual anomalies so they do not contribute to unacceptable risk. Rationale: 5.8.3.
+4. Released Version [Class A, B, C]: Document the software version being released. Rationale: 5.8.4.
+5. Build Procedure [Class B, C]: Document procedure and environment used to create released software. Rationale: 5.8.5.
+6. Plan Completion [Class B, C]: Confirm development or maintenance plan activities and associated documentation are complete. Rationale: 5.8.6.
+7. Archive [Class A, B, C]: Archive software, configuration items, and documentation for required retention period. Rationale: 5.8.7.
+8. Reliable Delivery [Class A, B, C]: Use procedures to deliver released software without corruption or unauthorized change (media, OTA, SaaS as applicable). Rationale: 5.8.8.
+9. Branch Strategy: Protected release branches; gated merges; immutable tags. Rationale: reproducibility with `DOC-SCM`.
+10. Artifacts: Signed binaries, SBOM, test reports, coverage, trace matrices, checksums. Rationale: auditability.
+11. Post-Release: Monitor field feedback per `DOC-SW-MAINT` and `REG-POSTMKT-LABEL`. Rationale: Clause 6.
 
 ## Recommended Practices
 - Maintain a release checklist template.
@@ -48,11 +53,12 @@ tests: [unit.xml, integ.xml, hil.xml]
 
 Release checklist (excerpt):
 ```
-- [ ] Tests/coverage meet thresholds
-- [ ] SAST/DAST clean or issues accepted with rationale
-- [ ] SBOM generated and stored
-- [ ] Approvals recorded
-- [ ] Rollback plan documented
+- [ ] All verification complete and evaluated (5.8.1)
+- [ ] Residual anomalies documented and risk-evaluated B/C (5.8.2–5.8.3)
+- [ ] Version and build procedure recorded (5.8.4–5.8.5)
+- [ ] SDP/maintenance activities complete (5.8.6)
+- [ ] Archive and delivery controls executed (5.8.7–5.8.8)
+- [ ] SBOM and trace matrices stored
 ```
 
 ## Anti-Patterns (risks)
@@ -72,11 +78,13 @@ Release checklist (excerpt):
 - Link release tag to build metadata, change requests, test reports, SBOM, and approvals; store manifest with artifacts.
 
 ## References
-- IEC 62304 config/release expectations.
+- IEC 62304:2006+A1:2015, 5.8 (software release).
+- `DOC-SCM`, `DOC-SW-MAINT`, `DOC-TEST-DOCS`.
 - FDA/MDR submission documentation for software versions.
 - SLSA concepts for provenance (informative).
 
 ## Changelog
+- 1.1.0 (2026-05-21): Mapped requirements to 5.8.1–5.8.8.
 - 1.0.0 (2026-01-04): Initial release management skill with branching, verification, approvals, and monitoring.
 
 ## Audit History

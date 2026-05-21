@@ -1,7 +1,7 @@
 ---
 skill_id: DOC-TRACEABILITY
-version: 1.0.0
-last_updated: 2026-01-04
+version: 1.1.0
+last_updated: 2026-05-21
 applies_to: [Class A, Class B, Class C]
 jurisdiction: [Global]
 prerequisites: [REG-IEC62304, REG-ISO14971, DOC-INLINE]
@@ -21,6 +21,8 @@ Ensure bidirectional traceability between requirements, hazards/risks, design, c
 3. Automation: Generate traceability matrices from managed artifacts (reqs tool + code tags + test metadata). Rationale: reduce drift.
 4. Change Impact: For each change, update trace links and assess affected items/tests. Rationale: controlled updates.
 5. Evidence Storage: Store trace outputs as release artifacts; version them with builds. Rationale: auditability.
+6. SDP Traceability [Class A, B, C]: Maintain trace from system requirements to software requirements, system tests, and software risk controls per development plan. Rationale: 5.1.1 c.
+7. Software Hazard Chain [Class B, C]: Maintain links: hazardous situation → software item → cause → risk control → control verification. Rationale: 7.3.3.
 
 ## Recommended Practices
 - Keep a `traceability.yaml` or use ALM exports to CSV/HTML for submissions.
@@ -56,16 +58,19 @@ Validate: every TEST-* references a REQ-*; fail build on missing link.
 - [ ] Trace matrices generated automatically and stored per release.
 - [ ] Change impact updates traces and triggers required tests.
 - [ ] CI checks for missing/invalid links in code/tests.
+- [ ] Software hazard trace chain maintained for Class B/C (7.3.3).
 
 ## Traceability
 - Central `traceability.yaml`/tool export; code/test tags; release-stored matrices.
 
 ## References
-- IEC 62304 traceability (5.1–5.6).
-- ISO 14971 for hazard-to-control linkage.
+- IEC 62304:2006+A1:2015, 5.1.1 c, 7.3.3, 5.3.6 (trace analyses).
+- `REG-IEC62304-SWRM`, `DOC-SW-REQ`.
+- ISO 14971:2019 for hazard-to-control linkage.
 - FDA/MDR submission expectations for trace matrices.
 
 ## Changelog
+- 1.1.0 (2026-05-21): Added 5.1.1 c and 7.3.3 software hazard trace chain.
 - 1.0.0 (2026-01-04): Initial traceability skill with IDs, automation, and CI checks.
 
 ## Audit History

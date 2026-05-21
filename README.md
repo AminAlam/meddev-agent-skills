@@ -4,7 +4,7 @@
   <img src="assets/meme.jpg" alt="Medical Device Skills Meme" width="400"/>
 </p>
 
-[![Skills](https://img.shields.io/badge/Skills-53-blue)](https://github.com)
+[![Skills](https://img.shields.io/badge/Skills-59-blue)](https://github.com)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![IEC 62304](https://img.shields.io/badge/IEC_62304-Aligned-orange)](regulatory/iec-62304/)
 
@@ -49,7 +49,9 @@ Modular "skill" files for AI coding agents working on medical device software. E
 ### Regulatory
 | Skill | Description |
 |-------|-------------|
-| [IEC 62304](regulatory/iec-62304/) | Software lifecycle process controls by class (A/B/C) |
+| [IEC 62304](regulatory/iec-62304/) | Software lifecycle hub by class (A/B/C); Clauses 4–9 |
+| [IEC 62304 Software Risk](regulatory/iec-62304-software-risk/) | Clause 7 software risk management process |
+| [IEC 62304 Legacy Software](regulatory/iec-62304-legacy-software/) | Amendment A1 legacy software pathway (4.4) |
 | [ISO 14971](regulatory/iso-14971/) | Risk management integration, hazard controls, traceability |
 | [FDA Premarket](regulatory/fda-premarket/) | Submission software documentation, SBOM, cybersecurity |
 | [FDA 820 Design Controls](regulatory/fda-820-design-controls/) | 21 CFR 820.30, DHF, verification vs validation, ISO 13485 slice |
@@ -114,11 +116,15 @@ Modular "skill" files for AI coding agents working on medical device software. E
 | Skill | Description |
 |-------|-------------|
 | [Code Comments](documentation/code-comments/) | Traceability annotations, risk/test tags |
-| [Design Docs](documentation/design-docs/) | SAD/SDD, interfaces, SOUP docs |
-| [Test Docs](documentation/test-docs/) | Plans/protocols/reports, submission formatting |
-| [Traceability](documentation/traceability/) | Matrices, bidirectional links, tool integration |
+| [Design Docs](documentation/design-docs/) | SAD/SDD, interfaces, SOUP docs (5.3–5.4) |
+| [Software Requirements](documentation/software-requirements/) | 5.2 requirements analysis and verification |
+| [Test Docs](documentation/test-docs/) | Plans/protocols/reports, 5.7.5 and 9.8 records |
+| [Traceability](documentation/traceability/) | Matrices, bidirectional links, 7.3.3 hazard chain |
 | [Inline Docs](documentation/inline-docs/) | Intentful inline comments, trace tags, API notes |
-| [Change Control](documentation/change-control/) | Change requests, impact, regression, config mgmt |
+| [Change Control](documentation/change-control/) | Change requests, impact, approvals (8.2) |
+| [Software Configuration Mgmt](documentation/software-configuration-management/) | Clause 8 identification, baselines, history |
+| [Problem Resolution](documentation/problem-resolution/) | Clause 9 problem reports, trends, closure |
+| [Software Maintenance](documentation/software-maintenance/) | Clause 6 post-release maintenance process |
 | [AI-Assisted Dev Governance](documentation/ai-assisted-development-governance/) | LLM coding policy, review, CSA-style evidence for agent output |
 
 ### Data
@@ -139,7 +145,7 @@ Modular "skill" files for AI coding agents working on medical device software. E
 
 ## Disclaimer
 
-> These skills **supplement, not replace**, reading the actual standards and guidance. Interpretations are noted; always verify with official documents and your QA/RA function. Jurisdictional differences (FDA vs EU MDR) are called out where relevant.
+> These skills **supplement, not replace**, reading the actual standards and guidance. They paraphrase obligations by clause reference only and do **not** reproduce copyrighted standard text. Obtain and use your own licensed copies of IEC, ISO, FDA, and EU documents for authoritative review. Interpretations are noted; always verify with official documents and your QA/RA sign-off. Jurisdictional differences (FDA vs EU MDR) are called out where relevant.
 
 ## Contributing
 
