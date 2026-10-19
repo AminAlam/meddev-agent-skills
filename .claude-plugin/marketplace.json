@@ -1,0 +1,16 @@
+{
+  "name": "meddev-agent-skills",
+  "owner": {
+    "name": "AminAlam"
+  },
+  "metadata": {
+    "description": "Medical device software skills for lifecycle planning, risk management, firmware, security, testing, and traceability."
+  },
+  "plugins": [
+    {
+      "name": "meddev-agent-skills",
+      "source": "./",
+      "description": "Medical device software skills for lifecycle planning, risk management, firmware, security, testing, and traceability."
+    }
+  ]
+}

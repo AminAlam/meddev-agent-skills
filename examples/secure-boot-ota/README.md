@@ -1,10 +1,10 @@
 # Secure Boot + OTA Example
 
 Demonstrates manifest validation, anti-rollback, and safe apply/rollback logic for firmware updates, aligned with:
-- `security/secure-boot/SKILL.md`
-- `security/secure-ota/SKILL.md`
-- `security/key-management/SKILL.md`
-- `documentation/traceability/SKILL.md`
+- `skills/meddev-secure-boot/SKILL.md`
+- `skills/meddev-secure-ota/SKILL.md`
+- `skills/meddev-key-management/SKILL.md`
+- `skills/meddev-traceability/SKILL.md`
 
 ## Files
 - `secure_boot.h/.c`: Manifest validation, anti-rollback check, and simulated apply.

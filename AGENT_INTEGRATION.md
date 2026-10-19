@@ -4,7 +4,9 @@ How to integrate `medical-device-agent-skills` into AI coding agents while respe
 
 ## Skill discovery
 - File-based: traverse repo; index `SKILL.md` paths plus frontmatter fields.
-- Metadata index: parse YAML frontmatter for `skill_id`, `applies_to`, `jurisdiction`, `prerequisites`, `version`.
+- Metadata index: read `name` and `description` from YAML frontmatter; read `skill_id`, `applies_to`, `jurisdiction`, `prerequisites`, and `version` from the nested `metadata` mapping.
+- All metadata values are strings. Split comma-separated `applies_to`, `jurisdiction`, and `prerequisites` values and trim whitespace; an empty string means an empty list.
+- Skills live under `skills/meddev-*/SKILL.md`. See [SKILLS.md](SKILLS.md) for the stable ID-to-name mapping. Native tools use descriptions for selection; prerequisite resolution remains a custom integration responsibility.
 - API-based: expose skills via a small service returning rendered sections and metadata; cache by `skill_id@version`.
 
 ## Selection algorithms
@@ -59,9 +61,9 @@ prompt = render_system_prompt(sections)
 ## Example: dynamic retrieval for a file
 ```python
 if "bootloader" in file_path:
-    load("security/secure-boot/SKILL.md")
+    load("skills/meddev-secure-boot/SKILL.md")
 if "wifi" in file_path:
-    load("connectivity/wifi-medical/SKILL.md")
+    load("skills/meddev-wifi-medical/SKILL.md")
 ```
 
 ## Sample agent architecture

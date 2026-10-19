@@ -4,13 +4,22 @@ This document defines the required structure for every `SKILL.md`. Skills are de
 
 ## 1) Metadata block (YAML frontmatter)
 ```yaml
-skill_id: REG-IEC62304          # unique, stable identifier
-version: 1.0.0                  # semantic version
-last_updated: 2026-01-04        # ISO date
-applies_to: [Class A, Class B]  # safety classes, explicit
-jurisdiction: [FDA, EU MDR]     # regulatory scope
-prerequisites: [REG-ISO14971]   # other skills to load first
+---
+name: meddev-iec-62304          # matches skills/<name>/ directory
+description: Plan and review medical device software lifecycle activities under IEC 62304.
+license: MIT
+metadata:
+  skill_id: REG-IEC62304        # unique, stable domain identifier
+  version: "1.1.0"             # skill content version
+  last_updated: "2026-05-21"   # ISO date, stored as a string
+  applies_to: "Class A, Class B, Class C"
+  jurisdiction: "FDA, EU MDR, Canada, UK"
+  prerequisites: "REG-ISO14971"
+  category: regulatory
+---
 ```
+
+All custom metadata values are strings for Agent Skills compatibility. Multi-value fields use comma-separated values; an empty string means no values. Consumers should split on commas and trim whitespace. `name` and `description` are required for discovery. Keep names lowercase and hyphenated, at most 64 characters, and descriptions at most 1024 characters. Store each skill at `skills/<name>/SKILL.md`.
 
 ## 2) Purpose
 One paragraph explaining the scope and intent of the skill.

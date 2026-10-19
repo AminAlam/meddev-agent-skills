@@ -3,10 +3,10 @@
 Demonstrates RTOS-aligned patterns without external RTOS dependencies: bounded message queue, watchdog servicing only when health checks pass, and task health monitoring.
 
 Aligned skills:
-- `firmware/rtos-patterns/SKILL.md`
-- `architecture/fault-tolerance/SKILL.md`
-- `architecture/defensive-design/SKILL.md`
-- `testing/unit-testing/SKILL.md`
+- `skills/meddev-rtos-patterns/SKILL.md`
+- `skills/meddev-fault-tolerance/SKILL.md`
+- `skills/meddev-defensive-design/SKILL.md`
+- `skills/meddev-unit-testing/SKILL.md`
 
 ## Files
 - `rtos_safety.h/.c`: Bounded queue send/receive with timeouts simulated, watchdog service gated on task health.
