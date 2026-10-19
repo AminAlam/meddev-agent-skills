@@ -6,7 +6,7 @@
 
 [![Skills](https://img.shields.io/badge/Skills-59-blue)](https://github.com)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![IEC 62304](https://img.shields.io/badge/IEC_62304-Aligned-orange)](regulatory/iec-62304/)
+[![IEC 62304](https://img.shields.io/badge/IEC_62304-Aligned-orange)](skills/meddev-iec-62304/)
 
 Modular "skill" files for AI coding agents working on medical device software. Each skill captures scoped, actionable guidance (requirements, patterns, anti-patterns, verification) to help agents produce safer, more compliant code without replacing human regulatory review.
 
@@ -26,21 +26,81 @@ Modular "skill" files for AI coding agents working on medical device software. E
 
 ---
 
+## Install
+
+Choose either the shared installer (individual skills) or a native plugin (the full collection). Avoid installing both, which can show duplicate skills.
+
+### One command for Claude Code, Codex, and Cursor
+
+Requires Node.js and npm. Run from the project where you want the skills:
+
+```bash
+npx skills add AminAlam/meddev-agent-skills -a claude-code -a codex -a cursor
+```
+
+Select skills interactively. Add `-g` to install across your projects. Preview available skills:
+
+```bash
+npx skills add AminAlam/meddev-agent-skills --list
+```
+
+For example, install the lifecycle hub and its risk-management prerequisite:
+
+```bash
+npx skills add AminAlam/meddev-agent-skills --skill meddev-iec-62304 --skill meddev-iso-14971 -a claude-code -a codex -a cursor
+```
+
+### Claude Code plugin
+
+Run inside Claude Code:
+
+```text
+/plugin marketplace add AminAlam/meddev-agent-skills
+/plugin install meddev-agent-skills@meddev-agent-skills
+```
+
+Restart the session if the skills do not appear. Invoke a skill with `/meddev-agent-skills:meddev-iec-62304` or describe the relevant task.
+
+### Codex plugin
+
+With a current Codex CLI:
+
+```bash
+codex plugin marketplace add AminAlam/meddev-agent-skills
+codex plugin add meddev-agent-skills@meddev-agent-skills
+```
+
+Restart Codex after installation. In desktop versions with a Plugins directory, select **Medical Device Agent Skills** as the marketplace source and install the plugin. If your version does not provide these plugin commands, use the shared installer above. Invoke an installed skill with `$meddev-iec-62304` or describe the relevant task.
+
+### Cursor plugin
+
+Open **Customize → From GitHub Repository** and enter:
+
+```text
+https://github.com/AminAlam/meddev-agent-skills
+```
+
+Install **meddev-agent-skills** from the imported marketplace. The skills appear in Customize. If your Cursor version does not offer repository import, use the shared installer above.
+
+### Use and update
+
+Ask, for example: “Use the IEC 62304 lifecycle skill to review our software development plan.” Skills are selected by their descriptions; installing the collection does not load every skill body into each conversation.
+
+The full plugin includes all prerequisites. When installing selected skills, also select the prerequisites listed in each skill's `metadata.prerequisites`; native tools do not automatically resolve those custom IDs. The [skill catalog](SKILLS.md) maps IDs to installable names.
+
+Update shared-installer skills with `npx skills update`. For native plugins, refresh the marketplace and use the tool's plugin update controls. Maintainers should increment the plugin version when releasing changes.
+
+Sources: [Skills CLI](https://github.com/vercel-labs/skills), [Claude Code marketplaces](https://code.claude.com/docs/en/plugin-marketplaces), [Codex plugins](https://developers.openai.com/plugins/build/plugins), [Cursor repository installation](https://cursor.com/docs/skills).
+
 ## Quick Start
 
-1. Pick relevant skills by domain and jurisdiction (e.g., `regulatory/iec-62304`, `security/secure-boot`)
-2. Load skills into your agent context — start with `SKILL_SCHEMA.md`, then add specific skills
-3. Follow the verification checklist when writing/reviewing code
-4. Maintain traceability: Requirements -> Design -> Code -> Tests
-5. Reference `examples/` for real patterns with annotations
+1. Install relevant skills or the full plugin using one route above.
+2. Select guidance by domain, jurisdiction, and safety class.
+3. Follow the verification checklist when writing or reviewing code.
+4. Maintain traceability: Requirements → Design → Code → Tests.
+5. Reference `examples/` for patterns with annotations.
 
-## Using with AI Assistants
-
-**Claude / Cursor / Copilot**: Load relevant `SKILL.md` files into context; include the schema first.
-
-**Retrieval (RAG)**: Index by metadata (`skill_id`, `jurisdiction`, `applies_to`) for similarity search.
-
-**Custom Agents**: Implement prerequisite chaining from YAML frontmatter; filter by class/jurisdiction.
+For custom integrations and metadata filtering, see [Agent Integration](AGENT_INTEGRATION.md). For publication and local checks, see [Distribution](DISTRIBUTION.md).
 
 ---
 
@@ -49,97 +109,97 @@ Modular "skill" files for AI coding agents working on medical device software. E
 ### Regulatory
 | Skill | Description |
 |-------|-------------|
-| [IEC 62304](regulatory/iec-62304/) | Software lifecycle hub by class (A/B/C); Clauses 4–9 |
-| [IEC 62304 Software Risk](regulatory/iec-62304-software-risk/) | Clause 7 software risk management process |
-| [IEC 62304 Legacy Software](regulatory/iec-62304-legacy-software/) | Amendment A1 legacy software pathway (4.4) |
-| [ISO 14971](regulatory/iso-14971/) | Risk management integration, hazard controls, traceability |
-| [FDA Premarket](regulatory/fda-premarket/) | Submission software documentation, SBOM, cybersecurity |
-| [FDA 820 Design Controls](regulatory/fda-820-design-controls/) | 21 CFR 820.30, DHF, verification vs validation, ISO 13485 slice |
-| [EU MDR](regulatory/eu-mdr/) | MDR-specific software expectations and Rule 11 |
-| [IEC 62366 Usability](regulatory/iec-62366-usability/) | Formative/summative evaluation, use-related risk, UI verification |
-| [SaMD Clinical Evaluation](regulatory/samd-clinical-evaluation/) | Intended use, IMDRF category, clinical evidence, CER linkage |
-| [AI/ML Device Software](regulatory/ai-ml-medical-device-software/) | GMLP, data governance, PCCP, drift monitoring, model SOUP |
-| [Postmarket & Labeling](regulatory/postmarket-labeling-ifu/) | Complaints, vigilance, recalls/FSCA, IFU and on-device labeling |
-| [IEC 62443](regulatory/iec-62443/) | Industrial cybersecurity for connected devices |
-| [21 CFR Part 11](regulatory/21-cfr-part-11/) | Electronic records/signatures, audit trails |
+| [IEC 62304](skills/meddev-iec-62304/) | Software lifecycle hub by class (A/B/C); Clauses 4–9 |
+| [IEC 62304 Software Risk](skills/meddev-iec-62304-software-risk/) | Clause 7 software risk management process |
+| [IEC 62304 Legacy Software](skills/meddev-iec-62304-legacy-software/) | Amendment A1 legacy software pathway (4.4) |
+| [ISO 14971](skills/meddev-iso-14971/) | Risk management integration, hazard controls, traceability |
+| [FDA Premarket](skills/meddev-fda-premarket/) | Submission software documentation, SBOM, cybersecurity |
+| [FDA 820 Design Controls](skills/meddev-fda-820-design-controls/) | 21 CFR 820.30, DHF, verification vs validation, ISO 13485 slice |
+| [EU MDR](skills/meddev-eu-mdr/) | MDR-specific software expectations and Rule 11 |
+| [IEC 62366 Usability](skills/meddev-iec-62366-usability/) | Formative/summative evaluation, use-related risk, UI verification |
+| [SaMD Clinical Evaluation](skills/meddev-samd-clinical-evaluation/) | Intended use, IMDRF category, clinical evidence, CER linkage |
+| [AI/ML Device Software](skills/meddev-ai-ml-medical-device-software/) | GMLP, data governance, PCCP, drift monitoring, model SOUP |
+| [Postmarket & Labeling](skills/meddev-postmarket-labeling-ifu/) | Complaints, vigilance, recalls/FSCA, IFU and on-device labeling |
+| [IEC 62443](skills/meddev-iec-62443/) | Industrial cybersecurity for connected devices |
+| [21 CFR Part 11](skills/meddev-21-cfr-part-11/) | Electronic records/signatures, audit trails |
 
 ### Architecture
 | Skill | Description |
 |-------|-------------|
-| [Safety Classification](architecture/safety-classification/) | Applying class to architecture, segregation, testing |
-| [Separation of Concerns](architecture/separation-of-concerns/) | Partitioning safety-critical boundaries |
-| [State Machines](architecture/state-machines/) | Safe states, transitions, testing patterns |
-| [Fault Tolerance](architecture/fault-tolerance/) | Detection, degradation, watchdog, recovery |
-| [Defensive Design](architecture/defensive-design/) | Input/output validation, assertions, error handling |
+| [Safety Classification](skills/meddev-safety-classification/) | Applying class to architecture, segregation, testing |
+| [Separation of Concerns](skills/meddev-separation-of-concerns/) | Partitioning safety-critical boundaries |
+| [State Machines](skills/meddev-state-machines/) | Safe states, transitions, testing patterns |
+| [Fault Tolerance](skills/meddev-fault-tolerance/) | Detection, degradation, watchdog, recovery |
+| [Defensive Design](skills/meddev-defensive-design/) | Input/output validation, assertions, error handling |
 
 ### Firmware
 | Skill | Description |
 |-------|-------------|
-| [Embedded C](firmware/embedded-c/) | MISRA-C aligned embedded guidance and examples |
-| [Embedded C++](firmware/embedded-cpp/) | Controlled C++ feature set for devices |
-| [RTOS Patterns](firmware/rtos-patterns/) | Tasks, priorities, IPC, timing, inversion avoidance |
-| [Memory Management](firmware/memory-management/) | Static allocation, pools, MPU usage |
-| [Power Management](firmware/power-management/) | Sleep/wake, battery monitoring, graceful shutdown |
-| [Interrupt Handling](firmware/interrupt-handling/) | ISR structure, critical sections, testing |
-| [Hardware Abstraction](firmware/hardware-abstraction/) | HAL layering and testability |
+| [Embedded C](skills/meddev-embedded-c/) | MISRA-C aligned embedded guidance and examples |
+| [Embedded C++](skills/meddev-embedded-cpp/) | Controlled C++ feature set for devices |
+| [RTOS Patterns](skills/meddev-rtos-patterns/) | Tasks, priorities, IPC, timing, inversion avoidance |
+| [Memory Management](skills/meddev-memory-management/) | Static allocation, pools, MPU usage |
+| [Power Management](skills/meddev-power-management/) | Sleep/wake, battery monitoring, graceful shutdown |
+| [Interrupt Handling](skills/meddev-interrupt-handling/) | ISR structure, critical sections, testing |
+| [Hardware Abstraction](skills/meddev-hardware-abstraction/) | HAL layering and testability |
 
 ### Connectivity
 | Skill | Description |
 |-------|-------------|
-| [BLE Medical](connectivity/ble-medical/) | Secure BLE services for PHI-bearing devices |
-| [WiFi Medical](connectivity/wifi-medical/) | WPA3/enterprise, cert management, coexistence |
-| [USB Medical](connectivity/usb-medical/) | Class selection, enumeration, safety |
-| [Interoperability](connectivity/interoperability/) | HL7 FHIR/IHE, terminology, API design |
+| [BLE Medical](skills/meddev-ble-medical/) | Secure BLE services for PHI-bearing devices |
+| [WiFi Medical](skills/meddev-wifi-medical/) | WPA3/enterprise, cert management, coexistence |
+| [USB Medical](skills/meddev-usb-medical/) | Class selection, enumeration, safety |
+| [Interoperability](skills/meddev-interoperability/) | HL7 FHIR/IHE, terminology, API design |
 
 ### Security
 | Skill | Description |
 |-------|-------------|
-| [Authentication](security/authentication/) | User/device auth, sessions, RBAC |
-| [Encryption](security/encryption/) | Algorithms, KDFs, data at rest/in transit |
-| [Secure Boot](security/secure-boot/) | Boot chain, signatures, rollback protection |
-| [Secure OTA](security/secure-ota/) | Signed updates, atomicity, rollback, server hardening |
-| [Key Management](security/key-management/) | Generation, storage, rotation, revocation |
-| [Threat Modeling](security/threat-modeling/) | STRIDE, attack surface, control mapping |
+| [Authentication](skills/meddev-authentication/) | User/device auth, sessions, RBAC |
+| [Encryption](skills/meddev-encryption/) | Algorithms, KDFs, data at rest/in transit |
+| [Secure Boot](skills/meddev-secure-boot/) | Boot chain, signatures, rollback protection |
+| [Secure OTA](skills/meddev-secure-ota/) | Signed updates, atomicity, rollback, server hardening |
+| [Key Management](skills/meddev-key-management/) | Generation, storage, rotation, revocation |
+| [Threat Modeling](skills/meddev-threat-modeling/) | STRIDE, attack surface, control mapping |
 
 ### Testing
 | Skill | Description |
 |-------|-------------|
-| [Unit Testing](testing/unit-testing/) | Frameworks, coverage by class, embedded mocks |
-| [Integration Testing](testing/integration-testing/) | HW/SW integration, interfaces, environments |
-| [Static Analysis](testing/static-analysis/) | Tools, MISRA configs, triage workflow |
-| [Dynamic Analysis](testing/dynamic-analysis/) | Runtime checks, thread safety, profiling |
-| [Fuzz Testing](testing/fuzz-testing/) | Inputs/protocol fuzzing, crashes, security focus |
-| [Code Coverage](testing/code-coverage/) | Metrics (stmt/branch/MC/DC), CI integration |
-| [Hardware-in-Loop](testing/hardware-in-loop/) | Fixtures, automation, timing, parallelism |
+| [Unit Testing](skills/meddev-unit-testing/) | Frameworks, coverage by class, embedded mocks |
+| [Integration Testing](skills/meddev-integration-testing/) | HW/SW integration, interfaces, environments |
+| [Static Analysis](skills/meddev-static-analysis/) | Tools, MISRA configs, triage workflow |
+| [Dynamic Analysis](skills/meddev-dynamic-analysis/) | Runtime checks, thread safety, profiling |
+| [Fuzz Testing](skills/meddev-fuzz-testing/) | Inputs/protocol fuzzing, crashes, security focus |
+| [Code Coverage](skills/meddev-code-coverage/) | Metrics (stmt/branch/MC/DC), CI integration |
+| [Hardware-in-Loop](skills/meddev-hardware-in-loop/) | Fixtures, automation, timing, parallelism |
 
 ### Documentation
 | Skill | Description |
 |-------|-------------|
-| [Code Comments](documentation/code-comments/) | Traceability annotations, risk/test tags |
-| [Design Docs](documentation/design-docs/) | SAD/SDD, interfaces, SOUP docs (5.3–5.4) |
-| [Software Requirements](documentation/software-requirements/) | 5.2 requirements analysis and verification |
-| [Test Docs](documentation/test-docs/) | Plans/protocols/reports, 5.7.5 and 9.8 records |
-| [Traceability](documentation/traceability/) | Matrices, bidirectional links, 7.3.3 hazard chain |
-| [Inline Docs](documentation/inline-docs/) | Intentful inline comments, trace tags, API notes |
-| [Change Control](documentation/change-control/) | Change requests, impact, approvals (8.2) |
-| [Software Configuration Mgmt](documentation/software-configuration-management/) | Clause 8 identification, baselines, history |
-| [Problem Resolution](documentation/problem-resolution/) | Clause 9 problem reports, trends, closure |
-| [Software Maintenance](documentation/software-maintenance/) | Clause 6 post-release maintenance process |
-| [AI-Assisted Dev Governance](documentation/ai-assisted-development-governance/) | LLM coding policy, review, CSA-style evidence for agent output |
+| [Code Comments](skills/meddev-code-comments/) | Traceability annotations, risk/test tags |
+| [Design Docs](skills/meddev-design-docs/) | SAD/SDD, interfaces, SOUP docs (5.3–5.4) |
+| [Software Requirements](skills/meddev-software-requirements/) | 5.2 requirements analysis and verification |
+| [Test Docs](skills/meddev-test-docs/) | Plans/protocols/reports, 5.7.5 and 9.8 records |
+| [Traceability](skills/meddev-traceability/) | Matrices, bidirectional links, 7.3.3 hazard chain |
+| [Inline Docs](skills/meddev-inline-docs/) | Intentful inline comments, trace tags, API notes |
+| [Change Control](skills/meddev-change-control/) | Change requests, impact, approvals (8.2) |
+| [Software Configuration Mgmt](skills/meddev-software-configuration-management/) | Clause 8 identification, baselines, history |
+| [Problem Resolution](skills/meddev-problem-resolution/) | Clause 9 problem reports, trends, closure |
+| [Software Maintenance](skills/meddev-software-maintenance/) | Clause 6 post-release maintenance process |
+| [AI-Assisted Dev Governance](skills/meddev-ai-assisted-development-governance/) | LLM coding policy, review, CSA-style evidence for agent output |
 
 ### Data
 | Skill | Description |
 |-------|-------------|
-| [PHI Handling](data/phi-handling/) | PHI identification, de-ID, encryption, retention |
-| [Data Integrity](data/data-integrity/) | CRC/ECC, validation, storage/transit integrity |
-| [Audit Logging](data/audit-logging/) | What/how to log, protection, retention |
+| [PHI Handling](skills/meddev-phi-handling/) | PHI identification, de-ID, encryption, retention |
+| [Data Integrity](skills/meddev-data-integrity/) | CRC/ECC, validation, storage/transit integrity |
+| [Audit Logging](skills/meddev-audit-logging/) | What/how to log, protection, retention |
 
 ### CI/CD
 | Skill | Description |
 |-------|-------------|
-| [Pipeline Design](ci-cd/pipeline-design/) | Regulated pipeline stages, artifacts, audit trail |
-| [Automated Testing](ci-cd/automated-testing/) | Strategy, hardware integration, flake handling |
-| [Release Management](ci-cd/release-management/) | Versioning, branches, verification, monitoring |
+| [Pipeline Design](skills/meddev-pipeline-design/) | Regulated pipeline stages, artifacts, audit trail |
+| [Automated Testing](skills/meddev-automated-testing/) | Strategy, hardware integration, flake handling |
+| [Release Management](skills/meddev-release-management/) | Versioning, branches, verification, monitoring |
 
 ---
 

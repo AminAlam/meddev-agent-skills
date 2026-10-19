@@ -4,7 +4,7 @@ Thanks for helping improve medical-device-agent-skills. Contributions must maint
 
 ## How to propose a new skill
 - Open an issue describing the skill scope, jurisdiction, safety classes, and rationale.
-- Draft the skill using `SKILL_SCHEMA.md` with complete metadata (skill_id, prerequisites, applies_to, jurisdiction).
+- Draft the skill using `SKILL_SCHEMA.md` at `skills/meddev-<topic>/SKILL.md` with `name`, a task-specific `description`, and complete nested metadata (`skill_id`, `prerequisites`, `applies_to`, `jurisdiction`).
 - Include at least two runnable code examples (preferably in C/C++/Python) that reflect real device patterns and compile/lint cleanly.
 - Provide verification checklists and traceability guidance.
 - Cite standards/guidance with section numbers; mark interpretations explicitly.
@@ -53,3 +53,7 @@ International and national standards (IEC, ISO, EN, FDA, EU) are copyrighted. Th
 ## Reporting issues or suggesting improvements
 - Open an issue with: context, affected skill(s), expected vs observed guidance, and proposed fix.
 - For urgent compliance gaps, label as `compliance-critical`.
+
+## Distribution checks
+
+Install development dependencies with `python3 -m pip install -r requirements-dev.txt`. Run `python3 scripts/validate_distribution.py` before submitting changes. After adding or renaming skills, regenerate the catalog with `python3 scripts/validate_distribution.py --write-catalog`. See [DISTRIBUTION.md](DISTRIBUTION.md) for native checks and release steps.

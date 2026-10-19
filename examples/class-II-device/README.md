@@ -3,13 +3,13 @@
 Demonstrates how to apply skills for a Class II, IEC 62304 Class C software item: safety classification, defensive design, IEC 62304 lifecycle traceability, ISO 14971 risk controls, and unit testing.
 
 ## Applied skills
-- `regulatory/iec-62304/SKILL.md` (lifecycle, traceability, SOUP)
-- `regulatory/iso-14971/SKILL.md` (risk controls, safe state)
-- `architecture/safety-classification/SKILL.md` (Class C item segregation)
-- `architecture/state-machines/SKILL.md` (simple start/stop)
-- `architecture/defensive-design/SKILL.md` (input validation)
-- `firmware/embedded-c/SKILL.md` (MISRA-aligned C)
-- `testing/unit-testing/SKILL.md` (AAA, traceability)
+- `skills/meddev-iec-62304/SKILL.md` (lifecycle, traceability, SOUP)
+- `skills/meddev-iso-14971/SKILL.md` (risk controls, safe state)
+- `skills/meddev-safety-classification/SKILL.md` (Class C item segregation)
+- `skills/meddev-state-machines/SKILL.md` (simple start/stop)
+- `skills/meddev-defensive-design/SKILL.md` (input validation)
+- `skills/meddev-embedded-c/SKILL.md` (MISRA-aligned C)
+- `skills/meddev-unit-testing/SKILL.md` (AAA, traceability)
 
 ## What’s included
 - `therapy_controller.h/.c`: Minimal therapy control API with state and guards.

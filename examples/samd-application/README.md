@@ -3,10 +3,10 @@
 Demonstrates Python-side diagnostic logic with traceability to requirements and risk controls, plus pytest-based tests. Intended for devices that offload analytics to a SAMD + Python environment.
 
 ## Applied skills
-- `documentation/test-docs/SKILL.md` (plans/protocols)
-- `documentation/code-comments/SKILL.md` (trace tags)
-- `testing/unit-testing/SKILL.md` (AAA, negative cases)
-- `data/data-integrity/SKILL.md` (validation, checks)
+- `skills/meddev-test-docs/SKILL.md` (plans/protocols)
+- `skills/meddev-code-comments/SKILL.md` (trace tags)
+- `skills/meddev-unit-testing/SKILL.md` (AAA, negative cases)
+- `skills/meddev-data-integrity/SKILL.md` (validation, checks)
 
 ## Files
 - `diagnostic_algorithm.py`: Simple diagnostic evaluator with input validation and thresholds.

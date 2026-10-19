@@ -3,10 +3,10 @@
 Demonstrates secure BLE service setup with LE Secure Connections, characteristic permissions, and basic security enabling per BLE medical connectivity skill.
 
 ## Applied skills
-- `connectivity/ble-medical/SKILL.md` (security mode, GATT perms, validation)
-- `security/authentication/SKILL.md` (mutual auth concepts)
-- `security/encryption/SKILL.md` (LESC/TLS analogies)
-- `documentation/code-comments/SKILL.md` (trace tags)
+- `skills/meddev-ble-medical/SKILL.md` (security mode, GATT perms, validation)
+- `skills/meddev-authentication/SKILL.md` (mutual auth concepts)
+- `skills/meddev-encryption/SKILL.md` (LESC/TLS analogies)
+- `skills/meddev-code-comments/SKILL.md` (trace tags)
 
 ## Files
 - `ble_service.h/.c`: Service init stub with secure characteristic policy.
